@@ -27,6 +27,14 @@ function returnApp(db){
     app.use('/', routes);
     app.use('/users', users);
 
+    //para llamar a los modulos se usa la funcion require
+    // la uri del módulo y debe especificar
+    // en el módulo la exportación con
+    // module.exports = <<funcion>>
+    var api = require('./routes/api.js')(db);
+    app.use('/api/v0', api);
+    // http://localhost:3000/api/v0/obtenerLibros
+
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {
       var err = new Error('Not Found');
