@@ -24,7 +24,10 @@ function returnApp(db){
     app.use(require('less-middleware')(path.join(__dirname, 'public')));
     app.use(express.static(path.join(__dirname, 'public')));
 
-    app.use('/', routes);
+    //app.use('/', routes);
+    app.get("/", function(req,res){
+        res.render("mobile",{});
+    })
     app.use('/users', users);
 
     //para llamar a los modulos se usa la funcion require
